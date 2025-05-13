@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Prediction Page</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="../static/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .contact-bar {
+      background-color: #f8f9fa;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .contact-bar a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .contact-bar a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Contact Information Bar -->
+  <div class="contact-bar">
+    <a href="mailto:sathwika0319@gmail.com">Email: sathwika0319@gmail.com</a>
+    <a href="https://github.com/example" target="_blank">GitHub: github.com/example</a>
+    <a href="https://linkedin.com/in/sathwika-628736210" target="_blank">LinkedIn: linkedin.com/in/sathwika-628736210</a>
+  </div>
+
+  <div class="container mt-5">
+    <h1 class="text-center">Review Classification using Bag of Words(BOW)</h1>
+
+    <!-- Form 1: Classify/Predict Review -->
+    <section id="predict-review" class="mt-5 form-container">
+      <h2 class="text-center">Classify Review</h2>
+      <form action="/predict_review" method="post">
+        <div class="form-group">
+          <label for="Model">Select Model</label>
+          <select id="inputModel" name="Model" class="form-control" required>
+            <option value="naive_bayes">Naive Bayes</option>
+            <option value="logistic_regression">Logistic Regression</option>
+            <option value="knn">K Nearest Neighbours</option>
+            <option value="svm">Support Vector Machine</option>
+            <option value="kernel_svm">Kernel Support Vector Machine</option>
+            <option value="decision_tree">Decision Tree</option>
+            <option value="random_forest">Random Forest</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="Review">Review</label>
+          <textarea name="Review" class="form-control" rows="4" placeholder="Enter your review here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Predict</button>
+      </form>
+    </section>
+    <section id="review-result" class="mt-4">
+      {% if prediction_text %}
+        <div class="alert alert-info text-center">
+          <strong>{{ prediction_text }}</strong>
+        </div>
+      {% endif %}
+    </section>
+
+  </div>
+
+  <script src="../static/lib/jquery/jquery.min.js"></script>
+  <script src="../static/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
